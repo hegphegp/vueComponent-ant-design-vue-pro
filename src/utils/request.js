@@ -14,6 +14,7 @@ const request = axios.create({
 
 // 异常拦截处理器
 const errorHandler = (error) => {
+  debugger
   if (error.response) {
     const data = error.response.data
     // 从 localstorage 获取 token
@@ -54,6 +55,11 @@ request.interceptors.request.use(config => {
 
 // response interceptor
 request.interceptors.response.use((response) => {
+  // debugger
+  const url = response.config.url
+  const method = response.config.method
+  const params = response.config.params
+  console.log(method + ' ' + url + ' ' + JSON.stringify(params) + ' ' + JSON.stringify(response.data))
   return response.data
 }, errorHandler)
 

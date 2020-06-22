@@ -35,6 +35,7 @@ const user = {
   actions: {
     // 登录
     Login ({ commit }, userInfo) {
+      console.log(JSON.stringify(userInfo))
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           const result = response.result
@@ -42,6 +43,7 @@ const user = {
           commit('SET_TOKEN', result.token)
           resolve()
         }).catch(error => {
+          debugger
           reject(error)
         })
       })
