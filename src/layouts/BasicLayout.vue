@@ -8,7 +8,7 @@
     :handleMediaQuery="handleMediaQuery"
     :handleCollapse="handleCollapse"
     :logo="logoRender"
-    :i18nRender="i18nRender"
+    :i18nRender="(t) => t"
     v-bind="settings"
   >
     <setting-drawer :settings="settings" @change="handleSettingChange" />
@@ -24,7 +24,6 @@
 
 <script>
 import { SettingDrawer, updateTheme } from '@ant-design-vue/pro-layout'
-import { i18nRender } from '@/locales'
 import { mapState } from 'vuex'
 import { SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mutation-types'
 
@@ -102,7 +101,6 @@ export default {
     updateTheme(this.settings.primaryColor)
   },
   methods: {
-    i18nRender,
     handleMediaQuery (val) {
       this.query = val
       if (this.isMobile && !val['screen-xs']) {
